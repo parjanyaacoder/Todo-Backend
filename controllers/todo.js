@@ -29,7 +29,7 @@ async function handleCreateTodo(req, res) {
 async function handleUpdateTodo(req, res) {
     const { id } = req.params || {};
     const body = req?.body
-    if (!body || !body.title ||!body.description || !body.date) {
+    if (!body || !body.title ||!body.description || !body.date || !id) {
         return res.status(400).json({error: "Missing required fields"})
     }
     const result = await TodoModel.findByIdAndUpdate(id, {

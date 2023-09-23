@@ -1,6 +1,8 @@
 const express = require("express")
 const bodyParser = require("body-parser")
 const { connectDB } = require('./connection')
+const todoRouter = require('./routes/todo') 
+const userRouter = require('./routes/user')
 
 const app = express()
 
@@ -9,8 +11,8 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 
 // Routes
-const todoRouter = require('./routes/todo')
 app.use("/todo/v1", todoRouter)
+app.use("/user/v1", userRouter)
 
 // Connection
 connectDB('mongodb://127.0.0.1:27017/todo')
